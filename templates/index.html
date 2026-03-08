@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Price Predictor</title>
+    <base href="/house-price-prediction/"></base>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h2>Real Estate Estimator</h2>
+        <p class="subtitle">Predict property market value instantly using California housing data</p>
+    </header>
+    
+    <div class="form-info">
+        Fill in all the required fields below to get an accurate house price prediction.
+    </div>
+    
+    <form id="predictionForm">
+        <div class="form-grid">
+            <!-- Geographic Information -->
+            <div class="form-group">
+                <label class="required">Longitude</label>
+                <input type="number" id="longitude" step="any" required min="-180" max="180" placeholder="-122.23">
+                <span class="input-hint">Negative values for West</span>
+            </div>
+            
+            <div class="form-group">
+                <label class="required">Latitude</label>
+                <input type="number" id="latitude" step="any" required min="-90" max="90" placeholder="37.88">
+                <span class="input-hint">Positive values for North</span>
+            </div>
+            
+            <div class="form-group full-width">
+                <label class="required">Ocean Proximity</label>
+                <select id="ocean_proximity" required>
+                    <option value="">Select distance from ocean</option>
+                    <option value="NEAR BAY">Near Bay</option>
+                    <option value="<1H OCEAN">Less than 1 hour from Ocean</option>
+                    <option value="INLAND">Inland</option>
+                    <option value="NEAR OCEAN">Near Ocean</option>
+                    <option value="ISLAND">Island</option>
+                </select>
+            </div>
+            
+            <!-- Property Characteristics -->
+            <div class="form-group">
+                <label class="required">Housing Median Age</label>
+                <input type="number" id="housing_median_age" required min="0" max="100" placeholder="41">
+                <span class="input-hint">Median age of houses in block</span>
+            </div>
+            
+            <div class="form-group double-width">
+                <label class="required">Median Income</label>
+                <input type="number" id="median_income" step="0.01" required min="0" max="15" placeholder="8.32">
+                <span class="input-hint">Median income in tens of thousands (e.g., 8.32 = $83,200)</span>
+            </div>
+            
+            <!-- Room Statistics -->
+            <div class="form-group">
+                <label class="required">Total Rooms</label>
+                <input type="number" id="total_rooms" required min="0" placeholder="880">
+            </div>
+            
+            <div class="form-group">
+                <label>Total Bedrooms</label>
+                <input type="number" id="total_bedrooms" min="0" placeholder="129">
+                <span class="input-hint">Optional - can be empty</span>
+            </div>
+            
+            <div class="form-group">
+                <label class="required">Households</label>
+                <input type="number" id="households" required min="0" placeholder="126">
+                <span class="input-hint">Number of households in block</span>
+            </div>
+            
+            <!-- Population Information -->
+            <div class="form-group">
+                <label class="required">Population</label>
+                <input type="number" id="population" required min="0" placeholder="322">
+                <span class="input-hint">Total population in block</span>
+            </div>
+        </div>
+        
+        <div class="button-group">
+            <button type="button" id="loadSampleBtn" class="secondary-btn">Load Sample Data</button>
+            <button type="submit" id="predictBtn" class="primary-btn">Get Valuation</button>
+        </div>
+    </form>
+
+    <div class="result-container" id="resultBox">
+        <span class="result-label">Estimated Market Value</span>
+        <div class="result-value" id="resultValue">$0.00</div>
+        <div class="result-note">Prediction based on current input data</div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
