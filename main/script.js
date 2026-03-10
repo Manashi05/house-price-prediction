@@ -1,7 +1,3 @@
-// URL of your deployed Render backend
-// Replace with your actual Render URL, e.g., https://house-price-backend.onrender.com
-const BACKEND_URL = "https://your-render-backend.onrender.com";
-
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("predictionForm");
     const resultBox = document.getElementById("resultBox");
@@ -41,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         try {
-            // Send data to Render backend
+            // Send data to local Flask backend
             const response = await fetch(`${BACKEND_URL}/predict`, {
                 method: "POST",
                 headers: {
@@ -54,12 +50,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (response.ok) {
                 resultValue.innerText = `$${data.predicted_house_value.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+                resultBox.style.display = "block";
             } else {
                 resultValue.innerText = `Error: ${data.error}`;
+                resultBox.style.display = "block";
             }
 
         } catch (err) {
             resultValue.innerText = `Error: ${err.message}`;
+            resultBox.style.display = "block";
         }
     });
 });
